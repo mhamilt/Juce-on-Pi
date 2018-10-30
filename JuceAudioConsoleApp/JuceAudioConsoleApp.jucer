@@ -3,6 +3,16 @@
 <JUCERPROJECT id="GrdhLu" name="JuceAudioConsoleApp" projectType="consoleapp"
               jucerVersion="5.3.2">
   <MAINGROUP id="jWG8qH" name="JuceAudioConsoleApp">
+    <GROUP id="{CCE3C133-3A15-7A45-FA42-AB528D9ABB2E}" name="joeyMoogClasses">
+      <FILE id="z0CCkR" name="LinearJoeyMoogSC.cpp" compile="1" resource="0"
+            file="joeyMoogClasses/LinearJoeyMoogSC.cpp"/>
+      <FILE id="XCPP9h" name="LinearJoeyMoogSC.hpp" compile="0" resource="0"
+            file="joeyMoogClasses/LinearJoeyMoogSC.hpp"/>
+      <FILE id="eiZOww" name="NonLinearJoeyMoogSC.cpp" compile="1" resource="0"
+            file="joeyMoogClasses/NonLinearJoeyMoogSC.cpp"/>
+      <FILE id="R7t31H" name="NonLinearJoeyMoogSC.hpp" compile="0" resource="0"
+            file="joeyMoogClasses/NonLinearJoeyMoogSC.hpp"/>
+    </GROUP>
     <GROUP id="{2D55BDD8-2724-9F43-D36D-705394AFA706}" name="Source">
       <FILE id="wyQi2Z" name="AudioProcessing.cpp" compile="1" resource="0"
             file="Source/AudioProcessing.cpp"/>

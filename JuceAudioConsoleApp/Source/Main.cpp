@@ -10,20 +10,20 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "AudioProcessing.hpp"
-#include <wiringPi.h>
+//#include <wiringPi.h>
 //==============================================================================
 int main (int argc, char* argv[])
 {
     AudioProcessing processor;
-    wiringPiSetup () ;
-    pinMode (0, OUTPUT) ;
+//    wiringPiSetup () ;
+//    pinMode (0, OUTPUT) ;
     
-    while (true)
+    while (getchar() != 'q')
     {
-        digitalWrite (0, HIGH) ; delay (500) ;
-        printf("on\n");
-        digitalWrite (0,  LOW) ; delay (500) ;
-        printf("off\n");
+//        digitalWrite (0, HIGH) ; delay (500) ;
+//        printf("on\n");
+//        digitalWrite (0,  LOW) ; delay (500) ;
+//        printf("off\n");
     }
     return 0;
 }

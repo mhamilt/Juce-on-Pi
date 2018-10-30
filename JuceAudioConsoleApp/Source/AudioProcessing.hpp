@@ -9,6 +9,8 @@
 #define AudioProcessing_hpp
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../joeyMoogClasses/LinearJoeyMoogSC.hpp"
+#include "../joeyMoogClasses/NonLinearJoeyMoogSC.hpp"
 
 class AudioProcessing : public AudioIODeviceCallback
 {
@@ -31,7 +33,11 @@ public:
 private:
     //==============================================================================
     AudioDeviceManager deviceManager;
+    JoeyNonLinearMoogSC moogNonLin;
     Random random;
+    float modFreq    = .25;
+    float radsPerSec = 0;
+    float currRad    = 0;
 };
 
 

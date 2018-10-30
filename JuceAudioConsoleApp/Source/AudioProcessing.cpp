@@ -10,8 +10,9 @@
 //==============================================================================
 AudioProcessing::AudioProcessing()
 {
-    deviceManager.initialise(1, 1, nullptr, true);
+    deviceManager.initialise(0,2, nullptr, true);
     deviceManager.addAudioCallback(this);
+    
 }
 AudioProcessing::~AudioProcessing()
 {
@@ -22,25 +23,36 @@ AudioProcessing::~AudioProcessing()
 /// This is where your sample by sample processing goes
 
 void AudioProcessing::audioDeviceIOCallback(const float** inputChannelData,
-                                       int numInputChannels,
-                                       float** outputChannelData,
-                                       int numOutputChannels,
-                                       int numSamples)
+                                            int numInputChannels,
+                                            float** outputChannelData,
+                                            int numOutputChannels,
+                                            int numSamples)
 {
-    for (int channel = 0; channel < numOutputChannels; channel++)
+    
+    for (int i = 0; i < numSamples; i++)
     {
-        for (int i = 0; i < numSamples; i++)
-        {
-            outputChannelData[0][i] = random.nextFloat()* 0.5 - 0.25;
-        }
+        const float modSig = (sin(currRad) + 1) * .5f;
+        outputChannelData[0][i] = moogNonLin.filter(random.nextFloat()* 0.5 - 0.25,
+                                                    modSig,
+                                                    .4);
+        currRad += radsPerSec;
+    }
+    
+    if (numOutputChannels > 1)
+    {
+        for (int channel = 1; channel < numOutputChannels; ++channel)
+            outputChannelData[channel] = outputChannelData[0];
     }
 }
 //==============================================================================
 void AudioProcessing::audioDeviceAboutToStart(AudioIODevice* device)
 {
+    double sampleRate = device->getCurrentSampleRate();
+    moogNonLin.init(sampleRate);
+    radsPerSec = 2 * float_Pi * modFreq / sampleRate;
 }
 //==============================================================================
 void AudioProcessing::audioDeviceStopped()
 {
 }
- 
+
